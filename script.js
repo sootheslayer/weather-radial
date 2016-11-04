@@ -30,7 +30,7 @@ d3.csv('/Mumbai-2015.csv',function(data){
 		d.date = parseDate(d.date);
 		d.maxTemp = +d.maxTemp;
 		d.minTemp = +d.minTemp;
-		d.precipitaion = +d.precipitaion;
+		d.precipitation = +d.precipitation;
 	});
 
 	var maxOfmaxTemp = d3.max(data,function(d){return d.maxTemp;});
@@ -44,14 +44,19 @@ d3.csv('/Mumbai-2015.csv',function(data){
 	var colorScale = d3.scaleLinear()
 		// .domain([-15, 7.5, 30])
 		.domain([minOfminTemp,(minOfminTemp+maxOfmaxTemp)/2, maxOfmaxTemp])
-		.range(["#2c7bb6", "#ffff8c", "#d7191c"])
-		.interpolate(d3.interpolateHcl);
+		.range(["#FAD832", "#F53240"])
+		.interpolate(d3.interpolateHcl)
+		;
 
 	//Scale for the heights of the bar, not starting at zero to give the bars an initial offset outward
 	var barScale = d3.scaleLinear()
 		.range([innerRadius, outerRadius])
 		// .domain([-15,30])
-		.domain([minOfminTemp,maxOfmaxTemp]); 
+		.domain([minOfminTemp,maxOfmaxTemp]);
+
+	var precipitationScale = d3.scaleLinear()
+		.range([0,outerRadius/3])
+		.domain(d3.extent(data, function(d){return Math.sqrt(d.precipitation);}));
 
 	//Scale to turn the date into an angle of 360 degrees in total
 	//With the first datapoint (Jan 1st) on top
@@ -111,7 +116,7 @@ d3.csv('/Mumbai-2015.csv',function(data){
 
 	//Add January for reference
 	barWrapper.append("text")
-		.attr("class", "january")
+		.attr("class", "month")
 		.attr("x", 7)
 		.attr("y", -outerRadius * 1.1)
 		.attr("dy", "0.9em")
@@ -126,7 +131,17 @@ d3.csv('/Mumbai-2015.csv',function(data){
 
 	//---------------------------------------------- Draw bars ----------------------------------------------
 
-	//Draw a bar per day were the height is the difference between the minimum and maximum temperature
+
+	barWrapper.selectAll(".precipitationCircle")
+		.data(data)
+		.enter().append("circle")
+		.attr("class", "precipitationCircle")
+		.attr("transform", function(d,i){ return "rotate(" + (angle(d.date)) + ")"; })
+		.attr("cx", 0)
+		.attr("cy", function(d){ return barScale(d.meanTemp);})
+		.attr("r", function(d){ return precipitationScale(Math.sqrt(d.precipitation));});
+
+	//Draw a bar per day where the height is the difference between the minimum and maximum temperature
 	//And the color is based on the mean temperature
 	barWrapper.selectAll(".tempBar")
 	 	.data(data)
@@ -138,7 +153,7 @@ d3.csv('/Mumbai-2015.csv',function(data){
 	 	.attr("x", -0.75)
 	 	.attr("y", function(d,i) {return barScale(d.minTemp); })
 	 	.style("fill", function(d) { return colorScale(d.meanTemp); });
-		
+	
 	//---------------------------------------------- Create the gradient for the legend ----------------------------------------------
 
 	//Extra scale since the color scale is interpolated

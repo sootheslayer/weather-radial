@@ -114,13 +114,77 @@ d3.csv('/Mumbai-2015.csv',function(data){
 		.attr("dy", "0.3em")
 		.text(function(d) { return d + "°C";});
 
+	//---------------------------------------- Month Labels ------------------------------------------------
+
+
+	//The start date number and end date number of the months in a year
+	var monthData = [
+		{month: "January", 	startDateID: 0, 	endDateID: 30},
+		{month: "February", startDateID: 31, 	endDateID: 58},
+		{month: "March", 	startDateID: 59, 	endDateID: 89},
+		{month: "April", 	startDateID: 90, 	endDateID: 119},
+		{month: "May", 		startDateID: 120, 	endDateID: 150},
+		{month: "June", 	startDateID: 151, 	endDateID: 180},
+		{month: "July", 	startDateID: 181, 	endDateID: 211},
+		{month: "August", 	startDateID: 212, 	endDateID: 242},
+		{month: "September",startDateID: 243, 	endDateID: 272},
+		{month: "October", 	startDateID: 273, 	endDateID: 303},
+		{month: "November", startDateID: 306, 	endDateID: 333},
+		{month: "December",	startDateID: 334, 	endDateID: 364}
+	];
+	var arc = d3.arc()
+			.innerRadius(outerRadius + 10) 
+			.outerRadius(outerRadius + 30);
+	var pie = d3.pie()
+			.value(function(d) { return d.endDateID - d.startDateID; })
+			.padAngle(0.01)
+			.sort(null);
+
+	svg.selectAll(".monthArc")
+		.data(pie(monthData))
+	   .enter().append("path")
+		.attr("class", "monthArc")
+		.attr("id", function(d,i) { return "monthArc_"+i; })
+		.attr("d", arc);
+
+	svg.selectAll(".monthText")
+		.data(monthData)
+	   .enter().append("text")
+		.attr("class", "monthText")
+		.attr("x", 40) //Move the text from the start angle of the arc
+		.attr("dy", 13) //Move the text down
+	   .append("textPath")
+	   	// .attr("startOffset","50%")
+		.attr("xlink:href",function(d,i){return "#monthArc_"+i;})
+		.text(function(d){return d.month;});	
+	// var months = [ 				
+	// 	{starts:1,text:"Jul"}, // the order here is different or else the labels would appear inverted 
+	// 	{starts:32,text:"Aug"}, // because of rotation of axis.
+	// 	{starts:62,text:"Sep"},
+	// 	{starts:93,text:"Oct"},
+	// 	{starts:123,text:"Nov"},
+	// 	{starts:154,text:"Dec"},
+	// 	{starts:185,text:"Jan"},
+	// 	{starts:214,text:"Feb"},
+	// 	{starts:245,text:"Mar"},
+	// 	{starts:275,text:"Apr"},
+	// 	{starts:306,text:"May"},
+	// 	{starts:336,text:"Jun"},
+	// ];
+	// var calendarScale = d3.scaleLinear()
+	// 	.range([-180,0,180])
+	// 	.domain([1,185,366]);
 	//Add January for reference
-	barWrapper.append("text")
-		.attr("class", "month")
-		.attr("x", 7)
-		.attr("y", -outerRadius * 1.1)
-		.attr("dy", "0.9em")
-		.text("January");
+	// barWrapper.selectAll(".month")
+	// 	.data(months)
+	// 	.enter().append("text")
+	// 	.attr("class", "month")
+	// 	.attr("transform", function(d,i) { return "rotate(" + (calendarScale(d.starts)) + ")"; })
+	// 	.attr("x", 7)
+	// 	.attr("y", -outerRadius * 1.1)
+	// 	.attr("dy", "0.9em")
+	// 	.text(function(d){return d.text;});
+
 	//Add a line to split the year
 	barWrapper.append("line")
 		.attr("class", "yearLine")

@@ -1,0 +1,72 @@
+body {
+	font-size: 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	fill: #8C8C8C;
+	text-align: center;
+}
+
+.title {
+	font-size: 28px;
+	fill: #4F4F4F;
+	font-weight: 300;
+	text-anchor: start;
+}
+
+.subtitle {
+	font-size: 14px;
+	fill: #AAAAAA;
+	font-weight: 300;
+	text-anchor: start;
+}
+
+.credit {
+	font-size: 12px;
+	fill: #AAAAAA;
+	font-weight: 300;
+	text-anchor: start;
+}
+
+.axis path,
+.axis tick,
+.axis line {
+	fill: none;
+	stroke: none;
+}
+
+.axis text {
+	font-size: 12px;
+	fill: #AAAAAA;
+	font-weight: 400;
+}
+
+.legendTitle {
+	font-size: 14px;
+	fill: #4F4F4F;
+	font-weight: 300;
+}
+.january {
+	font-size: 14px;
+	text-anchor: start;
+	font-weight: 300;
+	fill: #AAAAAA;
+}
+
+.yearLine {
+	stroke: #AAAAAA;
+}
+
+.axisText {
+	fill: #C4C4C4;
+	font-size: 11px;
+	font-weight: 300;
+	text-anchor: middle;
+	text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.axisCircles {
+	fill: none;
+	stroke: #E8E8E8;
+	stroke-width: 1px;
+}
+

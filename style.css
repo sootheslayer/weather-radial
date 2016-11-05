@@ -80,3 +80,8 @@ body {
 	stroke: #E8E8E8;
 	fill-opacity: 0.4;
 }
+
+.card.large {
+    height: 750px;
+}
+

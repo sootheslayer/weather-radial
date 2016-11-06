@@ -4,8 +4,14 @@ body {
 	font-weight: 400;
 	fill: #8C8C8C;
 	text-align: center;
+ 	background-color: #e4e4e4;
 }
 
+
+.dropdown-content li>span {
+    clear: both;
+    color: rgba(0, 0, 0, 0.87);
+}
 .title {
 	font-size: 28px;
 	fill: #4F4F4F;
@@ -14,8 +20,8 @@ body {
 }
 
 .subtitle {
-	font-size: 14px;
-	fill: #AAAAAA;
+	font-size: 32px;
+	fill: #cacaca;
 	font-weight: 300;
 	text-anchor: start;
 }
@@ -85,3 +91,20 @@ body {
     height: 750px;
 }
 
+.select-wrapper input.select-dropdown {
+	border-bottom: none;
+}
+
+.input-field {
+	margin-top: 0rem;
+}
+
+.card-year {
+	font-size: 19px;
+	font-weight: 300;
+	line-height: 48px;
+}
+.row.desciptive-text {
+	margin-top: 20px;
+	margin-bottom: 0px;
+}

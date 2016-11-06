@@ -14,33 +14,49 @@
 <body>
 	<div class="row">
       <div class="col s12 m4">
-        <div class="card  light-blue">
-          <div class="card-content white-text">
-              <span class="card-title">Annual Weather in Mumbai</span>
-          	<div class="input-field">
-				<select>
-				  <option value="" disabled selected>Select the Year</option>
-				  <option value=0>1997</option>
-				  <option value=1>1998</option>
-				  <option value=2>1999</option>
-				  <option value=3>2000</option>
-				  <option value=4>2001</option>
-				  <option value=5>2002</option>
-				  <option value=6>2003</option>
-				  <option value=7>2004</option>
-				  <option value=8>2005</option>
-				  <option value=9>2006</option>
-				  <option value=10>2007</option>
-				  <option value=11>2008</option>
-				  <option value=12>2009</option>
-				  <option value=13>2010</option>
-				  <option value=14>2011</option>
-				  <option value=15>2012</option>
-				  <option value=16>2013</option>
-				  <option value=17>2014</option>
-				  <option value=18>2015</option>
-				</select>
-			</div>
+        <div class="card  ">
+          <div class="card-content black-text">
+             	<span class="card-title">Annual Weather in Mumbai</span>
+          		<div class="row desciptive-text">
+          			<div class="col m6">
+          				<span class="card-year">Select the year :</span>
+          			</div>
+          			<div class="col m6">
+          				<div class="input-field" >
+							<select >
+							  <option value=0>1997</option>
+							  <option value=1>1998</option>
+							  <option value=2>1999</option>
+							  <option value=3>2000</option>
+							  <option value=4>2001</option>
+							  <option value=5>2002</option>
+							  <option value=6>2003</option>
+							  <option value=7>2004</option>
+							  <option value=8>2005</option>
+							  <option value=9>2006</option>
+							  <option value=10>2007</option>
+							  <option value=11>2008</option>
+							  <option value=12>2009</option>
+							  <option value=13>2010</option>
+							  <option value=14>2011</option>
+							  <option value=15>2012</option>
+							  <option value=16>2013</option>
+							  <option value=17>2014</option>
+							  <option value=18>2015</option>
+							</select>
+						</div>
+          			</div>
+          		</div>
+          		<div>
+          			<div class="row descriptive-text ">
+          				<div class="col m8">
+          					<span class="card-year">Click to see the animation.</span>
+          				</div>
+          				<div class="col m4">
+          					<a id="animate-chart" class="waves-effect waves-light btn">play</a>
+          				</div>
+          			</div>
+          		</div>
           </div>
          	
         </div>
@@ -51,8 +67,8 @@
           </div>
         </div>
     </div>
+    <script src="weather.js"></script>
 	<script src="main.js"></script>
-	<script src="weather.js"></script>
 	<script src="script.js"></script>
 </body>
 </html>

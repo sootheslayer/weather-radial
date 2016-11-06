@@ -27,11 +27,13 @@ var svg = d3.select("#weatherChart")
 var parseDate = d3.timeParse("%Y-%m-%d");
 
 //Turn strings into actual numbers/dates
-weatherData[month].data.forEach(function(d) {
-	d.date = parseDate(d.date);
-	d.maxTemp = +d.maxTemp;
-	d.minTemp = +d.minTemp;
-	d.precipitation = +d.precipitation;
+weatherData.forEach(function(Y){
+		Y.data.forEach(function(d) {
+			d.date = parseDate(d.date);
+			d.maxTemp = +d.maxTemp;
+			d.minTemp = +d.minTemp;
+			d.precipitation = +d.precipitation;
+	});
 });
 
 var maxOfmaxTemp = 45;//d3.max(weatherData[month].data,function(d){return d.maxTemp;});
@@ -65,8 +67,8 @@ var angle = d3.scaleLinear()
 
 //---------------------------------------- Create Titles ----------------------------------------
 
-// var textWrapper = svg.append("g").attr("class", "textWrapper")
-// 	.attr("transform", "translate(" + Math.max(-width/2, -outerRadius - 170) + "," + 0 + ")");
+var textWrapper = svg.append("g").attr("class", "textWrapper")
+	.attr("transform", "translate(" + (-outerRadius-70) + "," + 0 + ")");
 
 // //Append title to the top
 // textWrapper.append("text")
@@ -74,11 +76,11 @@ var angle = d3.scaleLinear()
 //     .attr("x", 0)
 //     .attr("y", -outerRadius - 40)
 //     .text("Daily Temperatures in Mumbai");
-// textWrapper.append("text")
-// 	.attr("class", "subtitle")
-//     .attr("x", 0)
-//     .attr("y", -outerRadius - 20)
-//     .text(weatherData[month].year);
+textWrapper.append("text")
+	.attr("class", "subtitle")
+    .attr("x", 0)
+    .attr("y", -outerRadius + 20)
+    .text(weatherData[month].year);
 
 // //Append credit at bottom
 // textWrapper.append("text")
@@ -229,7 +231,7 @@ var legendHeight = Math.min(outerRadius*2, 400);
 //Color Legend container
 var legendsvg = svg.append("g")
 	.attr("class", "legendWrapper")
-	.attr("transform", "translate(" + (outerRadius + 130) + "," + 0 + ")");
+	.attr("transform", "translate(" + (outerRadius + 100) + "," + 0 + ")");
 
 //Draw the Rectangle
 legendsvg.append("rect")
@@ -275,12 +277,6 @@ legendsvg.append("g")
 //-----------------------------------------------Update Fuction--------------------------------
 
 function updateChart(){
-	weatherData[month].data.forEach(function(d) {
-		d.date = parseDate(d.date);
-		d.maxTemp = +d.maxTemp;
-		d.minTemp = +d.minTemp;
-		d.precipitation = +d.precipitation;
-	});
 
 	precipitationScale.domain(d3.extent(weatherData[month].data, function(d){return Math.sqrt(d.precipitation);}));	
 
@@ -301,8 +297,6 @@ function updateChart(){
 	var updateTemp = barWrapper.selectAll(".tempBar")
 	 	.data(weatherData[month].data, function(d) {return d;});
 
- 	console.log(updateTemp.exit());
-
  	updateTemp.exit().remove();
  	updateTemp
 	 	.enter().append("rect")
@@ -314,6 +308,10 @@ function updateChart(){
 	 	.attr("x", -0.75)
 	 	.attr("y", function(d,i) {return barScale(d.minTemp); })
 	 	.style("fill", function(d) { return colorScale(d.meanTemp); });
+
+ 	d3.select('.subtitle')
+ 		.transition().duration(450*2)
+ 		.text(weatherData[month].year);
  	
 
 }

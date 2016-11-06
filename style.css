@@ -108,3 +108,10 @@ body {
 	margin-top: 20px;
 	margin-bottom: 0px;
 }
+.card.paragraph {
+	height: 495px;
+}
+
+.desc-para {
+	font-size: 16px;
+}

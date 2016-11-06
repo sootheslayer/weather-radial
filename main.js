@@ -29,7 +29,6 @@ d3.interval(function(){
 			month = 0;
 		}
 		updateChart();
-		console.log("updating " + month);
 	}
 },1500);
 

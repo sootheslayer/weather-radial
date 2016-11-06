@@ -13,16 +13,16 @@
 </head>
 <body>
 	<div class="row">
-      <div class="col s12 m4">
-        <div class="card  ">
-          <div class="card-content black-text">
-             	<span class="card-title">Annual Weather in Mumbai</span>
-          		<div class="row desciptive-text">
-          			<div class="col m6">
-          				<span class="card-year">Select the year :</span>
-          			</div>
-          			<div class="col m6">
-          				<div class="input-field" >
+	<div class="col s12 m4">
+		<div class="card  ">
+		  <div class="card-content black-text">
+		     	<span class="card-title">Annual Weather in Mumbai</span>
+		  		<div class="row desciptive-text">
+		  			<div class="col m6">
+		  				<span class="card-year">Select the year :</span>
+		  			</div>
+		  			<div class="col m6">
+		  				<div class="input-field" >
 							<select >
 							  <option value=0>1997</option>
 							  <option value=1>1998</option>
@@ -45,27 +45,43 @@
 							  <option value=18>2015</option>
 							</select>
 						</div>
-          			</div>
-          		</div>
-          		<div>
-          			<div class="row descriptive-text ">
-          				<div class="col m8">
-          					<span class="card-year">Click to see the animation.</span>
-          				</div>
-          				<div class="col m4">
-          					<a id="animate-chart" class="waves-effect waves-light btn">play</a>
-          				</div>
-          			</div>
-          		</div>
+		  			</div>
+		  		</div>
+		  		<div>
+		  			<div class="row descriptive-text ">
+		  				<div class="col m8">
+		  					<span class="card-year">Click to see the animation.</span>
+		  				</div>
+		  				<div class="col m4">
+		  					<a id="animate-chart" class="waves-effect waves-light btn">play</a>
+		  				</div>
+		  			</div>
+		  		</div>
+		  </div>
+		</div>
+		<div class="card paragraph">
+            <div class="card-content black-text">
+            	<span class="card-title">Insights</span>
+             	<p  class="desc-para">
+              		The chart besides give you an idea of the diurnal range of temperatures throughout the year for each day.
+					Length of the bars show you the range of temperature i.e min and max wheeas the color of bars show you the mean temperature throughout the year. Rainfall is shown as blue circles with the radius showing the amount of rainfall on that day. <br>
+					<a href="https://en.wikipedia.org/wiki/Climate_of_Mumbai" target="_blank">Mumbai</a>, a city in India has a typical tropical climate. Hence the mean temperatures throught the year is 
+					more or less the same. With heavy rainfall in the months of August and Septemnber as can be seen from the chart. 
+          		</p>
+          		<span class="card-title">Credits</span>
+          		<p class="desc-para">
+          			Idea: <a href="http://weather-radials.com/" target="_blank" >Weather Radials</a> <br>
+          			Data: <a href="https://www.wunderground.com/" target="_blank">Weather Underground</a> <br>
+          			Code Inspiration: <a href="http://bl.ocks.org/nbremer/a43dbd5690ccd5ac4c6cc392415140e7" target="_blank">Nadieh Bremer</a>
+          		</p>
+            </div>
           </div>
-         	
-        </div>
-      </div>
-      <div class="col s12 m8">
-          <div class="card large white" id="chart-placeholder" >
-			<div id="weatherChart"></div>
-          </div>
-        </div>
+	</div>
+		<div class="col s12 m8">
+			<div class="card large white" id="chart-placeholder" >
+				<div id="weatherChart"></div>
+			</div>
+		</div>
     </div>
     <script src="weather.js"></script>
 	<script src="main.js"></script>

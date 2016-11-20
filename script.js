@@ -2,12 +2,10 @@
 
 var margin = {
 	top: 50,
-	right: 20,
+	right: 70,
 	bottom: 50,
 	left: 20
 };
-// var width = window.innerWidth - margin.left - margin.right - 20;
-// var height = window.innerHeight - margin.top - margin.bottom - 20;
 
 var width = $('#chart-placeholder').width() - margin.left - margin.right - 20;
 var height = $('#chart-placeholder').height() - margin.top - margin.bottom - 20;
@@ -18,7 +16,7 @@ var svg = d3.select("#weatherChart")
 	.attr("width", width + margin.left + margin.right)
 	.attr("height", height + margin.top + margin.bottom)
 	.append("g")
-	.attr("transform", "translate(" + (margin.left + 400) + "," + (margin.top + height/2) + ")");
+	.attr("transform", "translate(" + (width/2) + "," + (margin.top + height/2) + ")");
 
 
 //---------------------------------------- Create scales ------------------------------------------------
@@ -40,7 +38,7 @@ var maxOfmaxTemp = 45;//d3.max(weatherData[month].data,function(d){return d.maxT
 var minOfminTemp = 0;//d3.min(weatherData[month].data,function(d){return d.minTemp;});
 
 //Set the minimum inner radius and max outer radius of the chart
-var	outerRadius = Math.min(width, height)/2,
+var	outerRadius = Math.min(width - margin.right - 40, height)/2,
 	innerRadius = outerRadius * 0.4;
 
 //Base the color scale on average temperature extremes
@@ -70,24 +68,11 @@ var angle = d3.scaleLinear()
 var textWrapper = svg.append("g").attr("class", "textWrapper")
 	.attr("transform", "translate(" + (-outerRadius-70) + "," + 0 + ")");
 
-// //Append title to the top
-// textWrapper.append("text")
-// 	.attr("class", "title")
-//     .attr("x", 0)
-//     .attr("y", -outerRadius - 40)
-//     .text("Daily Temperatures in Mumbai");
 textWrapper.append("text")
 	.attr("class", "subtitle")
     .attr("x", 0)
     .attr("y", -outerRadius + 20)
     .text(weatherData[month].year);
-
-// //Append credit at bottom
-// textWrapper.append("text")
-// 	.attr("class", "credit")
-//     .attr("x", 0)
-//     .attr("y", outerRadius + 120)
-//     .text("Inspiration from weather-radials.com");
 
 //------------------------------------------------------ Create Axes ---------------------------------------------------
 
@@ -231,7 +216,7 @@ var legendHeight = Math.min(outerRadius*2, 400);
 //Color Legend container
 var legendsvg = svg.append("g")
 	.attr("class", "legendWrapper")
-	.attr("transform", "translate(" + (outerRadius + 100) + "," + 0 + ")");
+	.attr("transform", "translate(" + (outerRadius + margin.right ) + "," + 0 + ")");
 
 //Draw the Rectangle
 legendsvg.append("rect")
